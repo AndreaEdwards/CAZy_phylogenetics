@@ -68,41 +68,45 @@ def multiprocess_muscle(file_paths, nprocesses):
 	return resultdict
 
 
-def find_indices(fasta_files):
-	for path in fasta_files:
-		indices = []
-		open_file = open(path, 'rU')
-		file_list = open_file.readlines()
-		for line in file_list:
-			if '>' in line:
-				indices.append(file_list.index(line))
-		interval = indices[1] - indices[0]
-		file_name = file_handlers.get_file_name(path)
-		return file_name, interval
+def find_indices(path):
+	file_handlers = FileHandlers()
+	#for path in fasta_files:
+	indices = []
+	open_file = open(path, 'rU')
+	file_list = open_file.readlines()
+	for line in file_list:
+		if '>' in line:
+			indices.append(file_list.index(line))
+	interval = indices[1] - indices[0]
+	file_name = file_handlers.get_file_name(path)
+	return file_name, file_list, interval
 
-def write_fasta_new_names(fasta_files, interval):
-	for path in fasta_files:
-		name_list = file_name.split('.')
-		out_file = ''.join([name_list[0] + '_new_names.' + name_list[1]])
-		new_file = open(out_file, 'w')
-		temp_dict = {}
-		i = 0
-		while i < len(file_list):
-			if file_list[i] in temp_dict:
-				i += interval
-			else:
-				temp_dict[file_list[i]] = file_list[i + 1 : i + (interval - 1)]
-				new_file.write(">" + str(i) + "\n")
-				for item in temp_dict[file_list[i]]:
-					new_file.write(item)
-				i += interval
+def write_fasta_new_names(path, file_name, file_list, interval):
+	#for path in fasta_files:
+	name_list = file_name.split('.')
+	out_file = ''.join([name_list[0] + '_new_names.' + name_list[1]])
+	new_file = open(out_file, 'w')
+	temp_dict = {}
+	i = 0
+	while i < len(file_list):
+		if file_list[i] in temp_dict:
+			i += interval
+		else:
+			temp_dict[file_list[i]] = file_list[i + 1 : i + (interval - 1)]
+			new_file.write(file_list[i])
+			for item in temp_dict[file_list[i]]:
+				new_file.write(item)
+			i += interval
 
 def main():
 	file_handlers = FileHandlers()
 	file_paths = file_handlers.search_directory()
 	fasta_files = file_handlers.find_files(file_paths, 'fasta')
-	file_name, interval = find_indices(fasta_files)
-	write_fasta_new_names(fasta_files, interval)
+	for path in fasta_files:
+		file_name, file_list, interval = find_indices(path)
+		write_fasta_new_names(path, file_name, file_list, interval)
+
+main()
 
 #fasta_files = file_handlers.find_files(file_paths, 'fasta')
 #for path in fasta_files:
