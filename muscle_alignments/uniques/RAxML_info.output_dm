@@ -1,0 +1,3 @@
+Sequence names of taxon 321 and 322 are identical, they are both called gi|218962086|ref|YP_001741861.1|
+Sequence names of taxon 850 and 1953 are identical, they are both called gi|189485246|ref|YP_001956187.1|
+ERROR: Found 2 taxa that had equal names in the alignment, exiting...

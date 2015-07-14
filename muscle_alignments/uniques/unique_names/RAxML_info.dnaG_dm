@@ -1,0 +1,52 @@
+
+
+This is RAxML version 8.1.24 released by Alexandros Stamatakis on June 29 2015.
+
+With greatly appreciated code contributions by:
+Andre Aberer      (HITS)
+Simon Berger      (HITS)
+Alexey Kozlov     (HITS)
+Kassian Kobert    (HITS)
+David Dao         (KIT and HITS)
+Nick Pattengale   (Sandia)
+Wayne Pfeiffer    (SDSC)
+Akifumi S. Tanabe (NRIFS)
+
+Alignment has 4611 distinct alignment patterns
+
+Proportion of gaps and completely undetermined characters in this alignment: 90.63%
+
+RAxML Computation of pairwise distances
+
+Using 1 distinct models/data partitions with joint branch length optimization
+
+
+All free model parameters will be estimated by RAxML
+GAMMA model of rate heteorgeneity, ML estimate of alpha-parameter
+
+GAMMA Model parameters will be estimated up to an accuracy of 0.1000000000 Log Likelihood units
+
+Partition: 0
+Alignment Patterns: 4611
+Name: No Name Provided
+DataType: AA
+Substitution Matrix: BLOSUM62
+Using fixed base frequencies
+
+
+
+
+RAxML was called as follows:
+
+raxmlHPC-PTHREADS-AVX -s dnaG_out_uniques_new_names.fasta -n output_dm -m PROTGAMMABLOSUM62 -T 2 -p 7 -f x 
+
+
+
+Log Likelihood Score after parameter optimization: -1234747.530900
+
+
+Computing pairwise ML-distances ...
+
+Time for pair-wise ML distance computation of 2166321 distances: 5404.656711 seconds
+
+Distances written to file: /Users/andrea/repositories/AMPHORA2/muscle_alignments/uniques/unique_names/RAxML_distances.output_dm
